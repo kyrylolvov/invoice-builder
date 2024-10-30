@@ -20,6 +20,9 @@
     "next-themes": "^0.3.0",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "react-hook-form": "^7.53.1",
+    "react-input-mask": "^2.0.4",
+    "react-number-format": "^5.4.2",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -27,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-input-mask": "^3.0.5",
     "eslint": "^8",
     "eslint-config-next": "^15.0.1",
     "eslint-plugin-prettier": "^5.2.1",
