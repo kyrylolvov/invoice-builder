@@ -1,11 +1,11 @@
 import { DownloadIcon } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "./ui/button";
+import { Button, ButtonProps } from "./ui/button";
 
-export function DownloadButton() {
+export function DownloadButton(props: ButtonProps) {
   return (
-    <Button size="icon">
+    <Button size="icon" {...props}>
       <DownloadIcon />
     </Button>
   );

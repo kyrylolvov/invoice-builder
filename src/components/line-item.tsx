@@ -2,12 +2,13 @@ import { Trash2Icon } from "lucide-react";
 import React from "react";
 import { Control, Controller, UseFieldArrayRemove, useWatch } from "react-hook-form";
 
+import { Invoice } from "~/types/invoice";
+
 import { Input, NumericInput } from "./inputs";
-import { FormValues } from "./invoice-form";
 
 interface LineItemProps {
   index: number;
-  control: Control<FormValues>;
+  control: Control<Invoice>;
   remove: UseFieldArrayRemove;
 }
 

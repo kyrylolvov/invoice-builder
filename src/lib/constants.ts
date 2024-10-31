@@ -8,3 +8,16 @@ export const paymentPlaceholder = `SEB Bank
 IBAN: 123 123 123 123`;
 
 export const notesPlaceholder = `Thank you for your business`;
+
+export const invoiceDefaultValues = {
+  invoiceNumber: "",
+  issueDate: "",
+  dueDate: "",
+  fromAddress: "",
+  toAddress: "",
+  lineItems: [{ description: "Development", quantity: "40", price: "20" }],
+  vat: "0",
+  total: "800",
+  paymentDetails: "",
+  additionalNotes: "",
+};
