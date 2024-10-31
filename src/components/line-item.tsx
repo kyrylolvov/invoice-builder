@@ -1,5 +1,6 @@
+import { Trash2Icon } from "lucide-react";
 import React from "react";
-import { Control, Controller, useWatch } from "react-hook-form";
+import { Control, Controller, UseFieldArrayRemove, useWatch } from "react-hook-form";
 
 import { Input, NumericInput } from "./inputs";
 import { FormValues } from "./invoice-form";
@@ -7,9 +8,10 @@ import { FormValues } from "./invoice-form";
 interface LineItemProps {
   index: number;
   control: Control<FormValues>;
+  remove: UseFieldArrayRemove;
 }
 
-export function LineItem({ index, control }: LineItemProps) {
+export function LineItem({ index, control, remove }: LineItemProps) {
   const quantity = useWatch({
     control,
     name: `lineItems.${index}.quantity`,
@@ -23,7 +25,7 @@ export function LineItem({ index, control }: LineItemProps) {
   const total = parseFloat(String(quantity)) * parseFloat(String(price));
 
   return (
-    <div className="grid grid-cols-10 border-b py-1.5">
+    <div className="relative grid grid-cols-10 py-1.5">
       <div className="col-span-4">
         <Controller
           control={control}
@@ -65,6 +67,13 @@ export function LineItem({ index, control }: LineItemProps) {
           className="text-right"
         />
       </div>
+
+      <button className="group absolute -right-6 top-1.5 p-0.5" onClick={() => remove(index)}>
+        <Trash2Icon
+          strokeWidth={2}
+          className="size-3.5 text-secondary-foreground opacity-40 transition-opacity group-hover:opacity-100"
+        />
+      </button>
     </div>
   );
 }

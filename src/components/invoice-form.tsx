@@ -157,8 +157,12 @@ export function InvoiceForm() {
             </div>
 
             {fields.map((item, index) => (
-              <LineItem key={item.id} index={index} control={control} />
+              <LineItem key={item.id} index={index} control={control} remove={remove} />
             ))}
+
+            <button className="mt-2" onClick={() => append([{ description: "", quantity: "0", price: "0" }])}>
+              + Add new item
+            </button>
           </div>
 
           <div className="grid grid-cols-2">
