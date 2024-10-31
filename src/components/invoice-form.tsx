@@ -107,8 +107,8 @@ export function InvoiceForm() {
             </div>
 
             <div>
-              <div className="grid grid-cols-10 border-b pb-1.5">
-                <div className="col-span-4 font-semibold">Description</div>
+              <div className="grid grid-cols-12 border-b pb-1.5">
+                <div className="col-span-6 font-semibold">Description</div>
                 <div className="col-span-2 text-right font-semibold">Quantity</div>
                 <div className="col-span-2 text-right font-semibold">Price</div>
                 <div className="col-span-2 text-right font-semibold">Total</div>
@@ -120,7 +120,7 @@ export function InvoiceForm() {
 
               <button
                 type="button"
-                className="mt-2"
+                className="mt-2 text-secondary-foreground/40 transition-colors hover:text-secondary-foreground/80"
                 onClick={() => append([{ description: "", quantity: "0", price: "0" }])}
               >
                 + Add new item

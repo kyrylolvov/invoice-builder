@@ -25,8 +25,8 @@ export function LineItem({ index, control, remove }: LineItemProps) {
   const total = parseFloat(String(quantity)) * parseFloat(String(price));
 
   return (
-    <div className="relative grid grid-cols-10 py-1.5">
-      <div className="col-span-4">
+    <div className="relative grid grid-cols-12 py-1.5">
+      <div className="col-span-6">
         <Controller
           control={control}
           name={`lineItems.${index}.description`}
@@ -68,10 +68,10 @@ export function LineItem({ index, control, remove }: LineItemProps) {
         />
       </div>
 
-      <button className="group absolute -right-6 top-1.5 p-0.5" onClick={() => remove(index)}>
+      <button className="group absolute -right-6 top-1 p-0.5" onClick={() => remove(index)}>
         <Trash2Icon
           strokeWidth={2}
-          className="size-3.5 text-secondary-foreground opacity-40 transition-opacity group-hover:opacity-100"
+          className="size-3.5 text-secondary-foreground opacity-40 transition-opacity group-hover:opacity-80"
         />
       </button>
     </div>
