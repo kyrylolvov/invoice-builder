@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 import { Control, Controller, useWatch } from "react-hook-form";
 
+import { NumericInput } from "~/components/ui/inputs";
 import { Invoice } from "~/types/invoice";
-
-import { NumericInput } from "./inputs";
 
 export function InvoiceSubtotal({ control }: { control: Control<Invoice> }) {
   const lineItems = useWatch({

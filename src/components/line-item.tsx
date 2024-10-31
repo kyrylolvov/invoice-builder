@@ -2,9 +2,8 @@ import { Trash2Icon } from "lucide-react";
 import React from "react";
 import { Control, Controller, UseFieldArrayRemove, useWatch } from "react-hook-form";
 
+import { Input, NumericInput } from "~/components/ui/inputs";
 import { Invoice } from "~/types/invoice";
-
-import { Input, NumericInput } from "./inputs";
 
 interface LineItemProps {
   index: number;
