@@ -53,16 +53,21 @@ export function InvoiceSubtotal({ control }: { control: Control<Invoice> }) {
       <div className="flex items-center justify-between">
         <div className="font-semibold">Total</div>
         <div className="text-xl">
-          <NumericInput
-            value={total}
-            thousandSeparator=","
-            prefix="$"
-            decimalScale={2}
-            fixedDecimalScale
-            className="bg-transparent text-right outline-none"
-            valueIsNumericString
-            readOnly
-            displayType="text"
+          <Controller
+            control={control}
+            name="total"
+            render={({ field }) => (
+              <NumericInput
+                {...field}
+                value={total}
+                placeholder="Total"
+                thousandSeparator=","
+                prefix="$"
+                decimalScale={2}
+                readOnly
+                className="text-right"
+              />
+            )}
           />
         </div>
       </div>
