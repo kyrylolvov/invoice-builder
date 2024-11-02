@@ -1,5 +1,7 @@
+import { renderToStream } from "@react-pdf/renderer";
 import { z } from "zod";
 
+import { InvoiceTemplate } from "./template";
 import { dateSchema, lineItemsSchema, nonEmptyString, nonNegativeNumberString } from "./utils";
 
 const invoiceSchema = z.object({
@@ -17,14 +19,22 @@ const invoiceSchema = z.object({
 });
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
+  const body = await request.json();
 
-    invoiceSchema.parse(body);
+  const result = invoiceSchema.safeParse(body);
 
-    return Response.json({ ...body }, { status: 200 });
-  } catch (e) {
-    console.log(e);
-    return Response.json({ message: "Please check the provided data and try again. " }, { status: 400 });
+  if (!result.success) {
+    return Response.json({ message: "Invalid body" }, { status: 400 });
   }
+
+  const stream = await renderToStream(<InvoiceTemplate />);
+
+  const blob = await new Response(stream).blob();
+
+  const headers = {
+    "Content-Type": "application/pdf",
+    "Cache-Control": "no-store, max-age=0",
+  };
+
+  return new Response(blob, { headers });
 }
