@@ -24,7 +24,8 @@
     "react-input-mask": "^2.0.4",
     "react-number-format": "^5.4.2",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
