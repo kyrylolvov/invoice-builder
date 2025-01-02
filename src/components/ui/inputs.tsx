@@ -10,7 +10,7 @@ export function Input({ className, ...props }: InputProps) {
       {...props}
       type="text"
       className={cn(
-        "w-full bg-transparent text-foreground outline-none placeholder:text-secondary-foreground/40",
+        "w-full bg-transparent text-foreground outline-none placeholder:text-secondary-foreground/40 aria-invalid:text-destructive aria-invalid:caret-foreground aria-invalid:placeholder:text-destructive/80",
         className,
       )}
     />

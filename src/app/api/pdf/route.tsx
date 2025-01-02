@@ -4,7 +4,7 @@ import { z } from "zod";
 import { InvoiceTemplate } from "./template";
 import { dateSchema, lineItemsSchema, nonEmptyString, nonNegativeNumberString } from "./utils";
 
-const invoiceSchema = z.object({
+export const invoiceSchema = z.object({
   invoiceNumber: nonEmptyString("Invoice number"),
   issueDate: dateSchema("Issue Date"),
   dueDate: dateSchema("Due Date"),
