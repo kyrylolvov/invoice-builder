@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import * as React from "react";
 import { useRef } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -15,6 +16,7 @@ import { LineItem } from "./line-item";
 import { ThemeSwitch } from "./theme-switch";
 
 export function InvoiceForm() {
+  const { theme } = useTheme();
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const { control, handleSubmit } = useForm<Invoice>({
@@ -26,11 +28,23 @@ export function InvoiceForm() {
     name: "lineItems",
   });
 
-  const onSubmit = (values: Invoice) => {
-    console.log(values);
+  const onSubmit = async (values: Invoice) => {
+    fetch("/api/pdf", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...values, theme: theme }),
+    }).then((res) => {
+      res.blob().then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "invoice.pdf";
+        a.click();
+      });
+    });
   };
-
-  console.log("rerender");
 
   return (
     <>
