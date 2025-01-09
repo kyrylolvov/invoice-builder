@@ -15,4 +15,5 @@ export interface Invoice {
   total: string;
   paymentDetails: string;
   additionalNotes: string;
+  theme: string;
 }

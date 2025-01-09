@@ -18,13 +18,13 @@ import { Input, PatternInput } from "./ui/inputs";
 import { TextArea } from "./ui/text-area";
 
 export function InvoiceForm() {
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
 
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const form = useForm<Invoice>({
-    resolver: zodResolver(invoiceSchema),
-    defaultValues: invoiceDefaultValues(theme!),
+  const form = useForm<Omit<Invoice, "theme">>({
+    resolver: zodResolver(invoiceSchema.omit({ theme: true })),
+    defaultValues: invoiceDefaultValues(),
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -32,16 +32,19 @@ export function InvoiceForm() {
     name: "lineItems",
   });
 
-  const onSubmit = (values: Invoice) => {
+  const onSubmit = (values: Omit<Invoice, "theme">) => {
+    const invoiceTheme = theme === "system" ? systemTheme : theme;
+    const body: Invoice = { ...values, theme: invoiceTheme! };
+
     fetch("/api/pdf", {
       method: "POST",
-      body: JSON.stringify({ ...values, theme: theme }),
+      body: JSON.stringify(body),
     }).then((res) => {
       res.blob().then((blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "invoice.pdf";
+        a.download = `Invoice-${values.invoiceNumber}.pdf`;
         a.click();
       });
     });

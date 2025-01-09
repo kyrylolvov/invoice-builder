@@ -6,7 +6,7 @@ import { FormControl, FormField, FormItem } from "~/components/ui/form";
 import { NumericInput } from "~/components/ui/inputs";
 import { Invoice } from "~/types/invoice";
 
-export function InvoiceSubtotal({ control }: { control: Control<Invoice> }) {
+export function InvoiceSubtotal({ control }: { control: Control<Omit<Invoice, "theme">> }) {
   const lineItems = useWatch({
     name: "lineItems",
     control,

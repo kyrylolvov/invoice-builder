@@ -7,7 +7,7 @@ import { Invoice } from "~/types/invoice";
 
 interface LineItemProps {
   index: number;
-  control: Control<Invoice>;
+  control: Control<Omit<Invoice, "theme">>;
   remove: UseFieldArrayRemove;
 }
 

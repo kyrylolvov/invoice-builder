@@ -9,7 +9,7 @@ IBAN: 123 123 123 123`;
 
 export const notesPlaceholder = `Thank you for your business`;
 
-export const invoiceDefaultValues = (theme: string) => ({
+export const invoiceDefaultValues = () => ({
   invoiceNumber: "",
   issueDate: "",
   dueDate: "",
@@ -20,5 +20,4 @@ export const invoiceDefaultValues = (theme: string) => ({
   total: "800",
   paymentDetails: "",
   additionalNotes: "",
-  theme: theme,
 });
