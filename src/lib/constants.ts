@@ -1,4 +1,4 @@
-export const addressPlaceholder = `Acne Inc.
+export const addressPlaceholder = `Acme Inc.
 List Island AB
 Email: info@email.com
 Phone: +1 (123) 456 7890
