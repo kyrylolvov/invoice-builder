@@ -4,10 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "next-themes";
 import { useRef } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { invoiceSchema } from "~/app/api/pdf/utils";
 import { Form as ReactForm, FormControl, FormField, FormItem } from "~/components/ui/form";
 import { addressPlaceholder, invoiceDefaultValues, notesPlaceholder, paymentPlaceholder } from "~/lib/constants";
+import { generateInvoice } from "~/lib/utils";
 import { Invoice } from "~/types/invoice";
 
 import { DownloadButton } from "./download-button";
@@ -36,29 +38,22 @@ export function InvoiceForm() {
     const invoiceTheme = theme === "system" ? systemTheme : theme;
     const body: Invoice = { ...values, theme: invoiceTheme! };
 
-    fetch("/api/pdf", {
-      method: "POST",
-      body: JSON.stringify(body),
-    }).then((res) => {
-      res.blob().then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `Invoice-${values.invoiceNumber}.pdf`;
-        a.click();
-      });
+    toast.promise(generateInvoice(body), {
+      loading: "Generating invoice...",
+      success: "Invoice downloaded successfully!",
+      error: "Failed to generate invoice. Please try again.",
     });
   };
 
   return (
-    <>
-      <div className="flex flex-col gap-4">
+    <div className="relative flex gap-4">
+      <div className="fixed top-8 flex -translate-x-14 flex-col gap-4">
         <DownloadButton onClick={() => formRef.current?.requestSubmit()} />
         <ThemeSwitch />
       </div>
 
       <ReactForm {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} ref={formRef} className="noValidate w-full">
+        <form onSubmit={form.handleSubmit(onSubmit)} ref={formRef} className="noValidate">
           <div className="flex aspect-[1/1.4] w-full flex-col justify-between rounded-md border bg-secondary/40 px-8 py-10 font-mono text-xs">
             <div className="flex flex-col gap-20">
               <div className="flex items-center justify-between">
@@ -209,6 +204,6 @@ export function InvoiceForm() {
           </div>
         </form>
       </ReactForm>
-    </>
+    </div>
   );
 }
