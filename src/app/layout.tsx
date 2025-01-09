@@ -21,7 +21,26 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Invoice Builder",
-  description: "Create invoices with ease",
+  description:
+    "Effortlessly create, customize, and manage professional invoices for your business. Save time with pre-designed templates, automatic calculations, and export options tailored to meet your invoicing needs.",
+  applicationName: "Invoice Builder",
+  authors: [{ name: "Kyrylo Lvov" }, { name: "Vlad Stohnii" }],
+  keywords: [
+    "invoice builder",
+    "create invoices online",
+    "invoice management",
+    "customizable invoices",
+    "billing software",
+    "invoice templates",
+    "invoice generator",
+    "professional invoices",
+    "online invoicing tools",
+    "small business invoicing",
+    "invoicing software",
+    "Next.js invoicing app",
+    "React invoice builder",
+    "web invoicing application",
+  ],
 };
 
 export default function RootLayout({
