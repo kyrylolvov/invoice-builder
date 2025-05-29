@@ -1,12 +1,14 @@
 import NumberFlow from "@number-flow/react";
-import React, { useMemo } from "react";
-import { Control, useWatch } from "react-hook-form";
+import React, { useEffect, useMemo } from "react";
+import { Control, useFormContext, useWatch } from "react-hook-form";
 
 import { FormControl, FormField, FormItem } from "~/components/ui/form";
 import { NumericInput } from "~/components/ui/inputs";
 import { Invoice } from "~/types/invoice";
 
 export function InvoiceSubtotal({ control }: { control: Control<Omit<Invoice, "theme">> }) {
+  const { setValue } = useFormContext<Invoice>();
+
   const lineItems = useWatch({
     name: "lineItems",
     control,
@@ -29,6 +31,10 @@ export function InvoiceSubtotal({ control }: { control: Control<Omit<Invoice, "t
     const vatAmount = parseFloat(String(vat));
     return subtotal + vatAmount;
   }, [subtotal, vat]);
+
+  useEffect(() => {
+    setValue("total", total.toFixed(2));
+  }, [total, setValue]);
 
   return (
     <div>

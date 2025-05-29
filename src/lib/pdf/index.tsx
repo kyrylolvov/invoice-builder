@@ -26,7 +26,7 @@ Font.register({
 });
 
 const themeStyles = (theme: "dark" | "light") => ({
-  backgroundColor: theme === "dark" ? "#151518" : "#FBFBFB",
+  backgroundColor: theme === "dark" ? "#151517" : "#FBFBFB",
   color: theme === "dark" ? "#fafafa" : "#09090b",
 });
 
